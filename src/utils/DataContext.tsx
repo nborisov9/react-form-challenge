@@ -8,6 +8,7 @@ interface IDataProvider {
 
 const DataProvider: React.FC<IDataProvider> = ({ children }) => {
   const [data, setData] = React.useState({});
+  console.log(data);
 
   const setValues = (values: any) => setData((prev) => ({ ...prev, ...values }));
 
