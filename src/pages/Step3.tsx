@@ -6,7 +6,7 @@ import Form from '../components/Form';
 import MainContainer from '../components/MainContainer';
 import PrimaryButton from '../components/PrimaryButton';
 import Title from '../components/Title';
-import { useDataContext } from '../utils/DataContext';
+import { IDataContext, useDataContext } from '../utils/DataContext';
 
 const Step3 = () => {
   const history = useHistory();
@@ -15,7 +15,7 @@ const Step3 = () => {
     defaultValues: { files: data.files },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IDataContext['data']) => {
     console.log('step3', data);
     history.push('/result');
     setValues(data);

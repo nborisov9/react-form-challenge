@@ -9,6 +9,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Form: React.FC<any> = ({ children, ...props }) => {
+  console.log(props);
+
   const classes = useStyles();
 
   return (

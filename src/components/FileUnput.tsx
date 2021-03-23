@@ -4,7 +4,9 @@ import { CloudUpload, InsertDriveFile } from '@material-ui/icons';
 import List from '@material-ui/core/List';
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import { Controller } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
+
+import { IFiels } from '../interfaces';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -26,8 +28,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const FileInput: React.FC<any> = ({ control, name }) => {
+interface IFileInput {
+  name: string;
+  control: Control;
+}
+
+const FileInput: React.FC<IFileInput> = ({ control, name }) => {
   const classes = useStyles();
+
+  console.log('c', control);
+  console.log('n', name);
 
   return (
     <Controller
@@ -46,7 +56,7 @@ const FileInput: React.FC<any> = ({ control, name }) => {
             )}
           </Dropzone>
           <List>
-            {value.map((file: any, index: any) => (
+            {value.map((file: IFiels, index: number) => (
               <ListItem key={index}>
                 <ListItemIcon>
                   <InsertDriveFile />

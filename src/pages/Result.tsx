@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Context } from 'react';
 import {
   List,
   ListItem,
@@ -15,13 +15,14 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Confetti from 'react-confetti';
+import Swal from 'sweetalert2';
 
 import MainContainer from '../components/MainContainer';
 import Title from '../components/Title';
-import { useDataContext } from '../utils/DataContext';
+import { IDataContext, useDataContext } from '../utils/DataContext';
 import { InsertDriveFile } from '@material-ui/icons';
 import PrimaryButton from '../components/PrimaryButton';
-import Swal from 'sweetalert2';
+import { IFiels } from '../interfaces';
 
 const useStyles = makeStyles(() => ({
   linkWrapper: {
@@ -44,7 +45,7 @@ const useStyles = makeStyles(() => ({
 const Result = () => {
   const [success, setSuccess] = React.useState<boolean>(false);
   const classes = useStyles();
-  const { data }: any = useDataContext();
+  const { data }: IDataContext = useDataContext();
 
   const entries = Object.entries(data).filter((entry) => entry[0] !== 'files');
   const { files } = data;
@@ -53,12 +54,12 @@ const Result = () => {
     const formData = new FormData();
 
     if (data.files) {
-      data.files.forEach((file: any) => {
-        formData.append('file', file, file.name);
+      data.files.forEach((file: IFiels) => {
+        formData.append('file', file.name);
       });
     }
 
-    entries.forEach((entry: any) => {
+    entries.forEach((entry: string[]) => {
       formData.append(entry[0], entry[1]);
     });
 

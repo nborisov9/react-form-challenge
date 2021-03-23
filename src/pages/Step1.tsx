@@ -10,7 +10,7 @@ import PrimaryButton from '../components/PrimaryButton';
 import Form from '../components/Form';
 import Input from '../components/Input';
 import Title from '../components/Title';
-import { useDataContext } from '../utils/DataContext';
+import { IDataContext, useDataContext } from '../utils/DataContext';
 
 const useStyles = makeStyles(() => ({
   inputWrapper: {
@@ -34,15 +34,15 @@ const schema = yup.object().shape({
 const Step1 = () => {
   const classes = useStyles();
   const history = useHistory();
-  const { data, setValues }: any = useDataContext();
+  const { data, setValues }: IDataContext = useDataContext();
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors } = useForm<{ firstName: string; lastName: string }>({
     defaultValues: { firstName: data.firstName, lastName: data.lastName },
     mode: 'onBlur',
     resolver: yupResolver(schema), // yupResolver для валидации
   });
 
-  const onSubmit = (data: { firstName: string; lastName: string }) => {
+  const onSubmit = (data: IDataContext['data']) => {
     console.log('step1 data: ', data);
     setValues(data);
     history.push('/step2');

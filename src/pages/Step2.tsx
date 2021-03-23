@@ -12,7 +12,7 @@ import MainContainer from '../components/MainContainer';
 import PrimaryButton from '../components/PrimaryButton';
 import Title from '../components/Title';
 import { normalizePhoneNumber } from '../utils/Step';
-import { useDataContext } from '../utils/DataContext';
+import { IDataContext, useDataContext } from '../utils/DataContext';
 
 const schema = yup.object().shape({
   email: yup
@@ -23,7 +23,7 @@ const schema = yup.object().shape({
 
 const Step2 = () => {
   const history = useHistory();
-  const { data, setValues }: any = useDataContext();
+  const { data, setValues }: IDataContext = useDataContext();
 
   const { register, handleSubmit, errors, watch } = useForm({
     defaultValues: { email: data.email, hasPhone: data.hasPhone, phoneNumber: data.phoneNumber },
@@ -37,7 +37,7 @@ const Step2 = () => {
     e.target.value = normalizePhoneNumber(e.target.value);
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IDataContext['data']) => {
     console.log('step2 data: ', data);
     setValues(data);
     history.push('/step3');

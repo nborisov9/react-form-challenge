@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PrimaryButton: React.FC<any> = ({ children, props }) => {
+const PrimaryButton: React.FC<any> = ({ children, ...props }) => {
   const classes = useStyles();
 
   return (

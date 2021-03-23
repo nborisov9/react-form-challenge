@@ -3,7 +3,6 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 
 interface IMainContainerProps {
   children: React.ReactNode;
-  props?: any;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainContainer: React.FC<IMainContainerProps> = ({ children, ...props }) => {
+const MainContainer: React.FC<IMainContainerProps> = ({ children }) => {
   const classes = useStyles();
 
   return <main className={classes.root}>{children}</main>;
